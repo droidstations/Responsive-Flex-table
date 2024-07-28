@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flexbox Table</title>
+    <style>
+        .table {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cell {
+            flex: 1;
+            padding: 8px;
+            border-right: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .header {
+            background: #f4f4f4;
+            font-weight: bold;
+        }
+
+        .row:last-child .cell {
+            border-bottom: none;
+        }
+
+        .row:last-child .cell:last-child {
+            border-right: none;
+        }
+
+        @media (max-width: 600px) {
+            .table {
+                display: block;
+            }
+
+            .row {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .cell {
+                display: block;
+                text-align: right;
+                position: relative;
+                padding-left: 50%;
+                border-right: 0;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .cell::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                background: #f4f4f4;
+            }
+
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="table">
+        <div class="row header">
+            <div class="cell">Header 1</div>
+            <div class="cell">Header 2</div>
+            <div class="cell">Header 3</div>
+        </div>
+        <div class="row">
+            <div class="cell" data-label="Header 1">Row 1, Cell 1</div>
+            <div class="cell" data-label="Header 2">Row 1, Cell 2</div>
+            <div class="cell" data-label="Header 3">Row 1, Cell 3</div>
+        </div>
+        <div class="row">
+            <div class="cell" data-label="Header 1">Row 2, Cell 1</div>
+            <div class="cell" data-label="Header 2">Row 2, Cell 2</div>
+            <div class="cell" data-label="Header 3">Row 2, Cell 3</div>
+        </div>
+        <!-- More rows as needed -->
+    </div>
+</body>
+</html>
